@@ -1,13 +1,17 @@
 /**
  * External dependencies
  */
-const fs = require( 'fs' );
-const path = require( 'path' );
+import fs from 'fs';
+import path from 'path';
 
 /**
  * Internal dependencies
  */
-import { detectTypeFromLicenseText, checkAllCompatible } from '../license';
+import {
+	detectTypeFromLicenseText,
+	checkAllCompatible,
+	getLicenses,
+} from '../license';
 
 describe( 'detectTypeFromLicenseText', () => {
 	let licenseText;
@@ -82,5 +86,17 @@ describe( 'checkAllCompatible', () => {
 		expect( checkAllCompatible( [ 'A', 'D' ], [ 'A', 'B', 'C' ] ) ).toBe(
 			false
 		);
+	} );
+
+	it( 'should return true for GPL-3.0-or-later when checking GPL2 compatible licenses', () => {
+		expect(
+			checkAllCompatible( [ 'GPL-3.0-or-later' ], getLicenses( true ) )
+		).toBe( true );
+	} );
+
+	it( 'should return true for GPL-3.0+ when checking GPL2 compatible licenses', () => {
+		expect(
+			checkAllCompatible( [ 'GPL-3.0+' ], getLicenses( true ) )
+		).toBe( true );
 	} );
 } );

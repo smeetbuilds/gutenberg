@@ -68,6 +68,8 @@ const gpl2CompatibleLicenses = [
 	'GPL-2.0-or-later',
 	'GPL-2.0',
 	'GPL-2.0+',
+	'GPL-3.0-or-later',
+	'GPL-3.0+',
 	'ISC',
 	'LGPL-2.1',
 	'MIT',
